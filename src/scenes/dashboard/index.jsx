@@ -1,5 +1,9 @@
+import Grid from '@mui/material/Grid';
 const Dashboard = () => {
-    return <div>Trang chủ</div>
-}
+    return (
+       <h1>Dashboard</h1>
+    );
+   
+};
 
 export default Dashboard;

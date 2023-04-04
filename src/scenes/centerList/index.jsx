@@ -42,7 +42,7 @@ const CenterList = () => {
         },
         {
           field: "phone",
-          headerName: "Phone Number",
+          headerName: "Số điện thoại",
           flex: 1,
         },
         {
