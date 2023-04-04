@@ -3,8 +3,6 @@ import { tokens } from "../../theme";
 import {
     DataGridPro,
     GridToolbar,
-    FilterColumnsArgs,
-    GetColumnForNewFilterArgs,
   } from "@mui/x-data-grid-pro";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
@@ -26,31 +24,7 @@ const CenterList = () => {
          setData(data);
        })();
     }, []);
-    
-    const filterColumns = ({ field, columns, currentFilters }: FilterColumnsArgs) => {
-        // remove already filtered fields from list of columns
-        const filteredFields = currentFilters?.map((item) => item.field);
-        return columns
-          .filter(
-            (colDef) =>
-              colDef.filterable &&
-              (colDef.field === field || !filteredFields.includes(colDef.field)),
-          )
-          .map((column) => column.field);
-      };
-    
-      const getColumnForNewFilter = ({
-        currentFilters,
-        columns,
-      }: GetColumnForNewFilterArgs) => {
-        const filteredFields = currentFilters?.map(({ field }) => field);
-        const columnForNewFilter = columns
-          .filter(
-            (colDef) => colDef.filterable && !filteredFields.includes(colDef.field),
-          )
-          .find((colDef) => colDef.filterOperators?.length);
-        return columnForNewFilter?.field ?? null;
-      };
+  
 
     const columns = [
         { field: "id", headerName: "Mã trung tâm" },
@@ -80,7 +54,7 @@ const CenterList = () => {
           field: "accessLevel",
           headerName: "Vai trò",
           flex: 1,
-          renderCell: ({ row: { access } }) => {
+          renderCell: ({ row: { accessLevel } }) => {
             return (
               <Box
                 width="60%"
@@ -89,16 +63,16 @@ const CenterList = () => {
                 display="flex"
                 justifyContent="center"
                 backgroundColor={
-                  access === "admin"
+                  accessLevel === "admin"
                     ? colors.greenAccent[600]
                     : colors.greenAccent[700]
                 }
                 borderRadius="4px"
               >
-                {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
-                {access === "user" && <LockOpenOutlinedIcon />}
+                {accessLevel === "admin" && <AdminPanelSettingsOutlinedIcon />}
+                {accessLevel === "user" && <LockOpenOutlinedIcon />}
                 <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-                  {access}
+                  {accessLevel}
                 </Typography>
               </Box>
             );
@@ -109,12 +83,6 @@ const CenterList = () => {
     
     
   return (
-   
-    // <ul>
-    //     {data.map(item => (
-    //         <li key={item.id}>{item.name}</li>
-    //     ))}
-    // </ul>
     <Box m="20px">
       <Header
         title="Danh sách trung tâm đăng kiểm"
@@ -123,6 +91,7 @@ const CenterList = () => {
       <Box
         m="40px 0 0 0"
         height="75vh"
+        width="100%"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -155,15 +124,7 @@ const CenterList = () => {
         <DataGridPro
           rows={data}
           columns={columns}
-          slots={{ toolbar: GridToolbar }}
-          slotProps={{
-          filterPanel: {
-            filterFormProps: {
-              filterColumns,
-            },
-            getColumnForNewFilter,
-          },
-        }}
+          components={{ Toolbar: GridToolbar }}
         />
       </Box>
     </Box>
