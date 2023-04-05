@@ -1,7 +1,8 @@
-import Grid from '@mui/material/Grid';
+
+import CarDetail from "../carDetail";
 const Dashboard = () => {
     return (
-       <h1>Dashboard</h1>
+       <CarDetail/>
     );
    
 };

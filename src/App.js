@@ -4,7 +4,6 @@ import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
 import AddAccount from "./scenes/addAccount";
-import Bar from "./scenes/bar";
 import CenterList from "./scenes/centerList";
 import Line from "./scenes/line";
 import Pie from "./scenes/pie";
@@ -30,9 +29,8 @@ function App() {
               <Route path="/registryManagement" element={<RegistryManagement/>} />
               <Route path="/centerList" element={<CenterList />} />
               <Route path="/addAccount" element={<AddAccount />} />
-              <Route path="/bar" element={<Bar />} />
-              <Route path="/pie" element={<Pie />} />
               <Route path="/line" element={<Line />} />
+              <Route path="/pie" element={<Pie />} />
             </Routes>
           </main>
         </div>

@@ -8,7 +8,6 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
@@ -156,23 +155,16 @@ const Sidebar = () => {
                     Thống kê & dự báo
                     </Typography>
                     <Item
-                    title="Biểu đồ cột"
-                    to="/bar"
-                    icon={<BarChartOutlinedIcon />}
-                    selected={selected}
-                    setSelected={setSelected}
-                    />
-                    <Item
-                    title="Biểu đồ quạt"
-                    to="/pie"
-                    icon={<PieChartOutlineOutlinedIcon />}
-                    selected={selected}
-                    setSelected={setSelected}
-                    />
-                    <Item
-                    title="Biểu đồ đường"
+                    title="Dự báo số liệu"
                     to="/line"
                     icon={<TimelineOutlinedIcon />}
+                    selected={selected}
+                    setSelected={setSelected}
+                    />
+                    <Item
+                    title="Thống kê phân loại"
+                    to="/pie"
+                    icon={<PieChartOutlineOutlinedIcon />}
                     selected={selected}
                     setSelected={setSelected}
                     />

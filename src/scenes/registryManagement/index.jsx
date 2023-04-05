@@ -1,11 +1,9 @@
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import {Box, Button, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import {
     DataGridPro,
     GridToolbar,
   } from "@mui/x-data-grid-pro";
-import BatteryAlertOutlinedIcon from '@mui/icons-material/BatteryAlertOutlined';
-import Battery6BarOutlinedIcon from '@mui/icons-material/Battery6BarOutlined';
 import Grid from '@mui/material/Unstable_Grid2';
 import Header from "../../components/Header";
 import StatBox from "../../components/StatBox";
@@ -55,25 +53,8 @@ const RegistryManagement = () => {
       flex: 1,
       renderCell: ({ row: { status } }) => {
         return (
-          <Box
-            width="70%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              status === "normal"
-                ? colors.greenAccent[600]
-                : colors.redAccent[600]
-            }
-            borderRadius="4px"
-          >
-            {status === "normal" && <Battery6BarOutlinedIcon />}
-            {status === "nearly ended" && <BatteryAlertOutlinedIcon />}
-            <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              {status}
-            </Typography>
-          </Box>
+          
+          <Typography color={status == "normal" ? colors.greenAccent[400]: "red"}>{status}</Typography>
         );
       },
     },
