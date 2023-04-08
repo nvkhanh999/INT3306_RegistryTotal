@@ -7,6 +7,7 @@ import StatBox from "../../components/StatBox";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import LineChart from "../../components/LineChart";
 import ProgressCircle from "../../components/ProgressCircle";
+import PieChart from "../../components/PieChart";
 
 const Dashboard = () => {
     const theme = useTheme();
@@ -17,7 +18,8 @@ const Dashboard = () => {
 
         {/* Static */}
         <Grid container spacing={2} disableEqualOverflow>
-            <Grid xs={6} md={3}>
+            <Grid container xs={12} md={6}>
+            <Grid xs={6} md={6}>
                 <Box
                 backgroundColor={colors.primary[400]}
                 display="flex"
@@ -34,7 +36,7 @@ const Dashboard = () => {
                 </Box>
             </Grid>
 
-            <Grid xs={6} md={3}>
+            <Grid xs={6} md={6}>
                 <Box
                 backgroundColor={colors.primary[400]}
                 display="flex"
@@ -52,7 +54,7 @@ const Dashboard = () => {
                 </Box>
             </Grid>
 
-            <Grid xs={6} md={3}>
+            <Grid xs={6} md={6}>
                 <Box
                 backgroundColor={colors.primary[400]}
                 display="flex"
@@ -70,7 +72,7 @@ const Dashboard = () => {
                 </Box>
             </Grid>
 
-            <Grid xs={6} md={3}>
+            <Grid xs={6} md={6}>
                 <Box
                 backgroundColor={colors.primary[400]}
                 display="flex"
@@ -86,45 +88,15 @@ const Dashboard = () => {
                     increase="5%"
                 />
                 </Box>
-            </Grid>  
+            </Grid>   
             
-            <Grid
-            xs={12} md={12}
-            >
-                <Box
-                    p="0 30px"
-                    backgroundColor={colors.primary[400]}
-                    display="flex "
-                    justifyContent="space-between"
-                    alignItems="center"
-                    height="50px"
-                >
-                    
-                    <Typography
-                        variant="h5"
-                        fontWeight="600"
-                        color={colors.greenAccent[500]}
-                    >
-                        Biểu đồ thống kê và dự báo lượng xe đăng kiểm ở các khu vực
-                    </Typography>
-                    
-                    
-                    <IconButton>
-                        <DownloadOutlinedIcon
-                        sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                        />
-                    </IconButton>
-                </Box>
-           `     <Box height="300px" m="-20px 0 0 0"  backgroundColor={colors.primary[400]}>
-                    <LineChart isDashboard={true} />
-                </Box>`
             </Grid>
-        
-            <Grid xs={12} md={12}>
+            
+            <Grid xs={12} md={6}>
                 <Box
                 backgroundColor={colors.primary[400]}
                 overflow="auto"
-                sx={{ height: "280px"}}
+                sx={{ height: "300px"}}
                 >
                 <Box
                 display="flex"
@@ -133,8 +105,9 @@ const Dashboard = () => {
                 borderBottom={`4px solid ${colors.primary[500]}`}
                 colors={colors.grey[100]}
                 p="15px"
+                
                 >
-                    <Typography color={colors.grey[100]} variant="h5" fontWeight="600" >
+                    <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
                     Đăng kiểm gần đây
                     </Typography>
                 </Box>
@@ -170,6 +143,41 @@ const Dashboard = () => {
                 ))}
                 </Box>      
             </Grid>
+
+            
+            <Grid
+            xs={12} md={12}
+            >
+                <Box
+                    p="0 30px"
+                    backgroundColor={colors.primary[400]}
+                    display="flex "
+                    justifyContent="space-between"
+                    alignItems="center"
+                    height="50px"
+                >
+                    
+                    <Typography
+                        variant="h5"
+                        fontWeight="600"
+                        color={colors.greenAccent[500]}
+                    >
+                        Biểu đồ thống kê và dự báo lượng xe đăng kiểm ở các khu vực
+                    </Typography>
+                    
+                    
+                    <IconButton>
+                        <DownloadOutlinedIcon
+                        sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                        />
+                    </IconButton>
+                </Box>
+           `     <Box height="250px" m="-20px 0 0 0"  backgroundColor={colors.primary[400]}>
+                    <LineChart isDashboard={true} />
+                </Box>`
+            </Grid>
+        
+            
            
             
 
