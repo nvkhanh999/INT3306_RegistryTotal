@@ -187,4 +187,43 @@ export const mockLineData = [
       color: "hsl(344, 70%, 50%)",
     },
   ];
+
+  export const mockRegistry = [
+    {
+      ID: "01EDSA",
+      center: "Trung tâm Hà Nội 1",
+      date: "01/04/2023",
+    },
+    {
+      ID: "01EDSA",
+      center: "Trung tâm Hà Nội 1",
+      date: "01/04/2023",
+    },
+    {
+      ID: "01EDSA",
+      center: "Trung tâm Hà Nội 1",
+      date: "01/04/2023",
+    },
+    {
+      ID: "01EDSA",
+      center: "Trung tâm Hà Nội 1",
+      date: "01/04/2023",
+    },
+    {
+      ID: "01EDSA",
+      center: "Trung tâm Hà Nội 1",
+      date: "01/04/2023",
+    },
+    {
+      ID: "01EDSA",
+      center: "Trung tâm Hà Nội 1",
+      date: "01/04/2023",
+    },
+    {
+      ID: "01EDSA",
+      center: "Trung tâm Hà Nội 1",
+      date: "01/04/2023",
+    },
+    
+  ];
   

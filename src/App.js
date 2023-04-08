@@ -7,6 +7,7 @@ import AddAccount from "./scenes/addAccount";
 import CenterList from "./scenes/centerList";
 import Line from "./scenes/line";
 import Pie from "./scenes/pie";
+import LoginForm from "./scenes/login";
 import RegistryManagement from "./scenes/registryManagement";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
@@ -33,6 +34,7 @@ function App() {
               <Route path="/pie" element={<Pie />} />
             </Routes>
           </main>
+          
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>
