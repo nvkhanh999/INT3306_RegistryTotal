@@ -7,11 +7,10 @@ import AddAccount from "./scenes/addAccount";
 import CenterList from "./scenes/centerList";
 import Line from "./scenes/line";
 import Pie from "./scenes/pie";
-import LoginForm from "./scenes/login";
+import CenterDetail from "./scenes/centerDetail";
 import RegistryManagement from "./scenes/registryManagement";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
-
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -28,7 +27,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/registryManagement" element={<RegistryManagement/>} />
-              <Route path="/centerList" element={<CenterList />} />
+              <Route path="/centerList" element={<CenterList  />} />
+              <Route path="/centerList/:centerId" element={<CenterDetail/>} />
               <Route path="/addAccount" element={<AddAccount />} />
               <Route path="/line" element={<Line />} />
               <Route path="/pie" element={<Pie />} />

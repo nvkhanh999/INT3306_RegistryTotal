@@ -1,9 +1,9 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, Button, useTheme } from "@mui/material";
+import { Link } from 'react-router-dom';
 import { tokens } from "../../theme";
 import {
-    DataGridPro,
-    GridToolbar,
-  } from "@mui/x-data-grid-pro";
+    DataGrid, GridToolbar
+  } from "@mui/x-data-grid";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import Header from "../../components/Header";
@@ -21,13 +21,20 @@ const CenterList = () => {
             "https://6426461f556bad2a5b4cadb3.mockapi.io/centers"
          );
          const data = await fetchData.json();
+         console.log(data);
          setData(data);
        })();
     }, []);
   
 
     const columns = [
-        { field: "id", headerName: "Mã trung tâm" },
+        { field: "id", 
+          headerName: "Mã trung tâm",
+          renderCell: ({row : {id}}) => (
+            <Link style={{ textDecoration: 'none', color: colors.grey[100] }} 
+            to={`/centerList/${id}`}>{id}</Link>
+          ),
+        },
         {
           field: "name",
           headerName: "Tên trung tâm",
@@ -56,25 +63,11 @@ const CenterList = () => {
           flex: 1,
           renderCell: ({ row: { accessLevel } }) => {
             return (
-              <Box
-                width="60%"
-                m="0 auto"
-                p="5px"
-                display="flex"
-                justifyContent="center"
-                backgroundColor={
-                  accessLevel === "admin"
-                    ? colors.greenAccent[600]
-                    : colors.greenAccent[700]
-                }
-                borderRadius="4px"
-              >
-                {accessLevel === "admin" && <AdminPanelSettingsOutlinedIcon />}
-                {accessLevel === "user" && <LockOpenOutlinedIcon />}
-                <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-                  {accessLevel}
-                </Typography>
-              </Box>
+              <Button variant="contained" 
+                startIcon={accessLevel === "admin" ? <AdminPanelSettingsOutlinedIcon /> : <LockOpenOutlinedIcon /> }
+                style ={{ backgroundColor: colors.greenAccent[600], borderRadius:"4px" }}>
+                {accessLevel}
+              </Button>
             );
           },
         },
@@ -121,10 +114,10 @@ const CenterList = () => {
           },
         }}
       >
-        <DataGridPro
+        <DataGrid
           rows={data}
           columns={columns}
-          components={{ Toolbar: GridToolbar }}
+          slots={{ toolbar: GridToolbar }}
         />
       </Box>
     </Box>
