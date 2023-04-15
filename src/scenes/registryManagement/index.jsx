@@ -1,4 +1,5 @@
 import {Box, Typography, useTheme } from "@mui/material";
+import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import {
     DataGrid,
@@ -21,9 +22,16 @@ const RegistryManagement = () => {
       setData(data);
     })();
     }, []);
+    console.log(data);
 
    const columns = [
-    { field: "id", headerName: "Mã số kiểm định" },
+    { field: "id", 
+      headerName: "Mã số kiểm định",
+      renderCell: ({row : {id}}) => (
+        <Link style={{ textDecoration: 'none', color: colors.grey[100] }} 
+        to={`/registryManagement/${id}`}>{id}</Link>
+      ),
+     },
     {
       field: "car_id",
       headerName: "Biển số xe",

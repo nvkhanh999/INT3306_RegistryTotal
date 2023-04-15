@@ -9,8 +9,10 @@ import Line from "./scenes/line";
 import Pie from "./scenes/pie";
 import CenterDetail from "./scenes/centerDetail";
 import RegistryManagement from "./scenes/registryManagement";
+import RegistryDetail from "./scenes/registryDetail";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
+
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -26,7 +28,8 @@ function App() {
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/registryManagement" element={<RegistryManagement/>} />
+              <Route path="/registryManagement" element={<RegistryManagement />} />
+              <Route path="/registryManagement/:registryId" element={<RegistryDetail />} />
               <Route path="/centerList" element={<CenterList  />} />
               <Route path="/centerList/:centerId" element={<CenterDetail/>} />
               <Route path="/addAccount" element={<AddAccount />} />

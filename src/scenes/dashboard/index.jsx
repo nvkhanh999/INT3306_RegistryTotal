@@ -6,8 +6,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import StatBox from "../../components/StatBox";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import LineChart from "../../components/LineChart";
-import ProgressCircle from "../../components/ProgressCircle";
-import PieChart from "../../components/PieChart";
 
 const Dashboard = () => {
     const theme = useTheme();
@@ -134,7 +132,7 @@ const Dashboard = () => {
                 <Button
                     color="secondary" variant="contained"
                     p="5px 10px"
-                    borderRadius="4px"
+                    borderradius="4px"
                     type="submit"
                 >
                     Xem chi tiết
