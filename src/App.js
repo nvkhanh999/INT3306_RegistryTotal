@@ -12,6 +12,8 @@ import RegistryManagement from "./scenes/registryManagement";
 import RegistryDetail from "./scenes/registryDetail";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
+import Formlogin from './components/login/formlogin';
+
 
 
 function App() {
