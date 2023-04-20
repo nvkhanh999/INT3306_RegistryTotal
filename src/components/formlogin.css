@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    /* font-family: "CustomFont"; */
+}
+/* @font-face {
+    font-family: "CustomFont";
+    src: url("../fonts/RolexLight.woff2");
+} */
+
+.page {
+    height: 100vh;
+     background-color:#141b2d; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    color: white;
+}
+.cover {
+    background-color: rgba(255, 255, 255, 0.15);
+    width: 18em;
+    height: 25em;
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.550em  rgb(156, 156,156);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    backdrop-filter: blur(8.5px);
+}
+
+.alt-login {
+    width: 80px;
+    height: 3em;
+    display: flex;
+    justify-content: space-around;
+}
+
+.alt-login div {
+    width: 45%;
+    height: 90%;
+    border-radius: 0.25em;
+    background-color: #ccc;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+input {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 5px;
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    padding: 2em;
+}
+
+input:focus {
+    outline-color: rgb(32,177,255);
+    
+}
+.login-btn {
+    background-color: rgb(32,177,255);
+    width: 50%;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 10px;
+    cursor: pointer ; 
+}
+
+.login-btn:hover {
+    transform: scale(1.2);
+}
+
+   
+.input-botton { 
+    position: relative;
+    color: white;
+}
+
+
+
+.hide { 
+    position: absolute;
+    transform: scale(0);
+}
+
+.login-popup {
+    position: absolute;
+    height: 25em;
+    width: 18em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25em;
+    background-color: black;
+    color: white;
+    bottom: 0;
+    transform: scale(1);
+    transform: 1s;
+}
