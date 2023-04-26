@@ -27,7 +27,6 @@ class Login(BaseModel):
     username: str
     password: str
 
-    
 class CenterBase(BaseModel):
     username: str
     email: EmailStr
@@ -47,3 +46,11 @@ class CenterResponse(CenterBase):
     
     class Config:
         orm_mode = True
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    id: Optional[str] = None
+
