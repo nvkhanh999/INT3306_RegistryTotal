@@ -18,23 +18,24 @@ const CenterList = () => {
     useEffect(() => {
        (async () => {
          const fetchData = await fetch(
-            "https://6426461f556bad2a5b4cadb3.mockapi.io/centers"
+            "http://127.0.0.1:8000/center/all"
          );
          const data = await fetchData.json();
          console.log(data);
          setData(data);
        })();
     }, []);
-  
+
 
     const columns = [
-        { field: "id", 
+        { field: "centerID",
           headerName: "Mã trung tâm",
-          renderCell: ({row : {id}}) => (
-            <Link style={{ textDecoration: 'none', color: colors.grey[100] }} 
-            to={`/centerList/${id}`}>{id}</Link>
+          renderCell: ({row : {centerID}}) => (
+            <Link style={{ textDecoration: 'none', color: colors.grey[100] }}
+            to={`/centerList/${centerID}`}>{centerID}</Link>
           ),
         },
+		
         {
           field: "name",
           headerName: "Tên trung tâm",
@@ -48,7 +49,7 @@ const CenterList = () => {
           align: "left",
         },
         {
-          field: "phone",
+          field: "phoneNumber",
           headerName: "Số điện thoại",
           flex: 1,
         },
@@ -57,24 +58,24 @@ const CenterList = () => {
           headerName: "Email",
           flex: 1,
         },
-        {
-          field: "accessLevel",
-          headerName: "Vai trò",
-          flex: 1,
-          renderCell: ({ row: { accessLevel } }) => {
-            return (
-              <Button variant="contained" 
-                startIcon={accessLevel === "admin" ? <AdminPanelSettingsOutlinedIcon /> : <LockOpenOutlinedIcon /> }
-                style ={{ backgroundColor: colors.greenAccent[600], borderRadius:"4px" }}>
-                {accessLevel}
-              </Button>
-            );
-          },
-        },
+        // {
+        //   field: "accessLevel",
+        //   headerName: "Vai trò",
+        //   flex: 1,
+        //   renderCell: ({ row: { accessLevel } }) => {
+        //     return (
+        //       <Button variant="contained"
+        //         startIcon={accessLevel === "admin" ? <AdminPanelSettingsOutlinedIcon /> : <LockOpenOutlinedIcon /> }
+        //         style ={{ backgroundColor: colors.greenAccent[600], borderRadius:"4px" }}>
+        //         {accessLevel}
+        //       </Button>
+        //     );
+        //   },
+        // },
       ];
-      
-    
-    
+
+
+
   return (
     <Box m="20px">
       <Header
@@ -118,6 +119,7 @@ const CenterList = () => {
           rows={data}
           columns={columns}
           slots={{ toolbar: GridToolbar }}
+		  getRowId={row => row.centerID}
         />
       </Box>
     </Box>
