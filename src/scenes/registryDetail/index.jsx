@@ -1,7 +1,8 @@
 import Header from "../../components/Header";
 import { Link, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { Box, Button, Typography, useTheme, Card, CardContent, CardMedia, List, ListItem, ListItemText, Grid } from "@mui/material";
+import { useState, useEffect, useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import { Box, Button, Typography, useTheme, Card, CardContent, CardMedia, Grid } from "@mui/material";
 import Battery90OutlinedIcon from '@mui/icons-material/Battery90Outlined';
 import BatteryAlertOutlinedIcon from '@mui/icons-material/BatteryAlertOutlined';
 import PrintOutlinedIcon from '@mui/icons-material/PrintOutlined';
@@ -10,6 +11,8 @@ const RegistryDetail = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [registries, setRegistry] = useState([]);
+
+    
     useEffect(() => {
         (async () => {
           const fetchData = await fetch(
@@ -19,7 +22,17 @@ const RegistryDetail = () => {
           setRegistry(registries);
         })();
         }, []);
-        console.log(registries);
+    
+    //Handle print
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+        documentTitle: 'hello',
+        onAfterPrint:()=> alert('Print Success')
+    }) 
+    
+
+
     //tim kiem theo id
     const { registryId } = useParams();
     const registry = registries.find((registry) => registry.id === registryId)
@@ -45,7 +58,7 @@ const RegistryDetail = () => {
                     </Link>
                 </Box>
             </Box>
-           
+        
             {/* Registry Info*/}
             
             
@@ -59,7 +72,7 @@ const RegistryDetail = () => {
                         sx={{height: 500}}
                     />
                 </Grid>
-                <Grid xs={12} md={4} >
+                <Grid  xs={12} md={4} >
                     <CardContent sx={{ height: 500, backgroundColor: colors.primary[400]}}>
                         <Typography gutterBottom variant="h3" component="div"  color={colors.grey[100]}
                             fontWeight="bold"
@@ -95,6 +108,7 @@ const RegistryDetail = () => {
                         </div>
                         <Box sx={{ p: 2}}>
                             <Button
+                                onClick={handlePrint}
                                 sx={{
                                 backgroundColor: colors.blueAccent[700],
                                 color: colors.grey[100],
@@ -124,6 +138,8 @@ const RegistryDetail = () => {
             >
                 Thông tin chi tiết
             </Typography>
+
+            
 
             <Box sx={{ backgroundColor: colors.primary[400], borderRadius: '15px'}}>
                 <Grid container spacing={2}>
@@ -173,16 +189,73 @@ const RegistryDetail = () => {
                         </Typography>
                         </Box>
                     </Grid>
+                    
                 </Grid>
                 
             </Box> 
+            {/* Printing document */}
+            <Box sx={{display:'none'}}>
+                <Box ref={componentRef}>
+                <Typography
+                    variant="h1"
+                    color="black"
+                    fontWeight="bold"
+                    align="center"
+                    textTransform={"uppercase"}
+                    sx={{ m: "25px 0 45px 0" }}
+                >
+                    Giấy chứng nhận đăng kiểm
+                </Typography>
 
-
-
-
-
+                <Typography
+                    variant="h2"
+                    color="black"
+                    fontWeight="bold"
+                    textTransform={"uppercase"}
+                    align="center"
+                    sx={{ p:2 }}
+                >
+                    Thông tin đăng kiểm
+                </Typography>
+                <Typography variant="h3" color="black" sx={{ mb: 2, ml: 5}}>
+                    Tên chủ xe:  
+                </Typography>
+                <Typography variant="h3" color="black" sx={{ mb: 2, ml: 5}}>
+                    Dòng xe:  
+                </Typography>
+                <Typography variant="h3" color="black" sx={{ mb: 2, ml: 5}}>
+                    Biển số: 
+                </Typography>
+                <Typography variant="h3" color="black" sx={{ mb: 2, ml: 5}}>
+                    Mã đăng kiểm:
+                </Typography>
+                <Typography variant="h3" color="black" sx={{ mb: 2, ml: 5}}>
+                    Nơi đăng kiểm:  
+                </Typography>
+                <Typography variant="h3" color="black" sx={{ mb: 2, ml: 5}}>
+                    Ngày đăng kiểm:  
+                </Typography>
+                <Typography variant="h3" color="black" sx={{ mb: 2, ml: 5}}>
+                    Ngày hết hạn:  
+                </Typography>
+                <Grid container sx={{ mt: 5}}>
+                    <Grid xs={6} md={6}>
+                        <Typography variant="h3" color="black" align="center" >
+                            Chữ ký chủ xe  
+                        </Typography>
+                    </Grid>
+                    <Grid xs={6} md={6}>
+                        <Typography variant="h3" color="black" align="center">
+                            Xác nhận của nơi đăng kiểm  
+                        </Typography>
+                    </Grid>
+                </Grid>
+                </Box>   
+            </Box>
+            
             
         </Box>
+           
     );
 };
 

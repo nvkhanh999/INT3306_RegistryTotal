@@ -21,19 +21,19 @@ const FormLogin = () => {
                 return res.json();
             }).then((resp) => {
                 if (Object.keys(resp).length === 0) {
-                    toast.error('Please Enter valid username');
+                    toast.error('Tên đăng nhập không đúng');
                 } else {
                     if (resp.password === password) {
-                        toast.success('Success');
+                        toast.success('Đăng nhập thành công');
                         sessionStorage.setItem('username',username);
                         sessionStorage.setItem('userrole',resp.role);
                         usenavigate('/')
                     }else{
-                        toast.error('Please Enter valid credentials');
+                        toast.error('Mật khẩu không đúng');
                     }
                 }
             }).catch((err) => {
-                toast.error('Login Failed due to :' + err.message);
+                toast.error('Đăng nhập thất bại :' + err.message);
             });
         }
     }
@@ -81,11 +81,11 @@ const FormLogin = () => {
         let result = true;
         if (username === '' || username === null) {
             result = false;
-            toast.warning('Please Enter Username');
+            toast.warning('Hãy nhập tên đăng nhập');
         }
         if (password === '' || password === null) {
             result = false;
-            toast.warning('Please Enter Password');
+            toast.warning('Hãy nhập mật khẩu');
         }
         return result;
     }
@@ -94,7 +94,7 @@ const FormLogin = () => {
             <h1> REGISTRY TOTAL </h1>
             <input type="text" value={username} onChange={e => usernameupdate(e.target.value)} className="input-botton" placeholder="USERNAME"/>
             <input type="password" value={password} onChange={e => passwordupdate(e.target.value)} className="input-botton" placeholder="PASSWORD"/>
-            <button type="submit" className="login-btn" >Login</button>
+            <button type="submit" className="login-btn" >Đăng nhập</button>
         </form> 
     )
 }
