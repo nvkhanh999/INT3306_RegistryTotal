@@ -1,7 +1,9 @@
 import Header from "../../components/Header";
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
+import PopUp from "../../components/PopUp";
+import { ToastContainer } from 'react-toastify';
 import { Box, Button, Typography, useTheme, Card, CardContent, CardMedia, Grid } from "@mui/material";
 import Battery90OutlinedIcon from '@mui/icons-material/Battery90Outlined';
 import BatteryAlertOutlinedIcon from '@mui/icons-material/BatteryAlertOutlined';
@@ -27,8 +29,7 @@ const RegistryDetail = () => {
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
-        documentTitle: 'hello',
-        onAfterPrint:()=> alert('Print Success')
+        documentTitle: 'In giấy chứng nhận đăng kiểm',
     }) 
     
 
@@ -42,20 +43,9 @@ const RegistryDetail = () => {
         <Box m="20px">
             <Box display="flex" justifyContent="space-between" alignItems="center">
                 <Header title="Thông tin đăng kiểm" subtitle="Thông tin chi tiết của ô tô đã đăng kiểm" />
-                <Box>
-                    <Link to="/registryManagement">
-                        <Button
-                        sx={{
-                        backgroundColor: colors.blueAccent[700],
-                        color: colors.grey[100],
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                        padding: "10px 20px"
-                        }}
-                        >
-                            Quay về trang trước
-                        </Button>
-                    </Link>
+                <Box>     
+                    <PopUp/>   
+                    <ToastContainer theme='colored' position='top-center'></ToastContainer>      
                 </Box>
             </Box>
         
@@ -64,15 +54,15 @@ const RegistryDetail = () => {
             
             <Card sx={{ borderRadius: '15px', backgroundColor: colors.primary[400] }} >
             <Grid container spacing={2}>
-                <Grid xs={12} md={8} >
+                <Grid item xs={12} md={8} >
                     <CardMedia
                         component="img"
                         alt="car"
                         image="https://media.istockphoto.com/id/1307086567/photo/generic-modern-suv-car-in-concrete-garage.jpg?b=1&s=170667a&w=0&k=20&c=m2g-wU5m2tbqC7C_nWAgu7txHzeEnXKSFuby01V4dtI="
-                        sx={{height: 500}}
+                        sx={{ maxWidth: '100%', height: 500 }}
                     />
                 </Grid>
-                <Grid  xs={12} md={4} >
+                <Grid item xs={12} md={4} >
                     <CardContent sx={{ height: 500, backgroundColor: colors.primary[400]}}>
                         <Typography gutterBottom variant="h3" component="div"  color={colors.grey[100]}
                             fontWeight="bold"
@@ -118,7 +108,7 @@ const RegistryDetail = () => {
                                 }}
                             >
                                 <PrintOutlinedIcon sx={{ mr: "10px" }} />
-                                In giấy chứng nhận đăng kiểm
+                                In giấy chứng nhận 
                             </Button>
                         </Box>
         
@@ -143,7 +133,7 @@ const RegistryDetail = () => {
 
             <Box sx={{ backgroundColor: colors.primary[400], borderRadius: '15px'}}>
                 <Grid container spacing={2}>
-                    <Grid xs={12} md={6} >
+                    <Grid item xs={12} md={6} >
                         <Box>
                         <Typography
                             variant="h3"
@@ -167,7 +157,7 @@ const RegistryDetail = () => {
                         </Box>
                         
                     </Grid>
-                    <Grid xs={12} md={6}>
+                    <Grid item xs={12} md={6}>
                         <Box>
                         <Typography
                             variant="h3"
@@ -239,12 +229,12 @@ const RegistryDetail = () => {
                     Ngày hết hạn:  
                 </Typography>
                 <Grid container sx={{ mt: 5}}>
-                    <Grid xs={6} md={6}>
+                    <Grid item xs={6} md={6}>
                         <Typography variant="h3" color="black" align="center" >
                             Chữ ký chủ xe  
                         </Typography>
                     </Grid>
-                    <Grid xs={6} md={6}>
+                    <Grid item xs={6} md={6}>
                         <Typography variant="h3" color="black" align="center">
                             Xác nhận của nơi đăng kiểm  
                         </Typography>
