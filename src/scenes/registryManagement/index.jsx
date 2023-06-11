@@ -1,4 +1,4 @@
-import {Box, Typography, useTheme } from "@mui/material";
+import {Box, Typography, useTheme, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import {
@@ -8,7 +8,10 @@ import {
 import Grid from '@mui/material/Unstable_Grid2';
 import Header from "../../components/Header";
 import StatBox from "../../components/StatBox";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { ExcelRenderer } from 'react-excel-renderer';
+import { ToastContainer, toast } from 'react-toastify';
+
 const RegistryManagement = () => {
    const theme = useTheme();
    const colors = tokens(theme.palette.mode);
@@ -22,7 +25,36 @@ const RegistryManagement = () => {
       setData(data);
     })();
     }, []);
-    console.log(data);
+
+    const fileInputRef=useRef();
+    const handleFileUpload = (e) => {
+      const file = e.target.files[0];
+      ExcelRenderer(file, (err, resp) => {
+        if (err) {
+          console.log(err);
+        } else {
+          // Extract the data from the parsed Excel file
+          const excelData = resp.rows;
+
+          // Create new rows with the Excel data
+          const newData = excelData.map((data, index) => ({
+            id: index + 2 + data.length,
+            car_id: data[0],
+            area: data[1],
+            center: data[2],
+            end_date: data[3],
+            status: data[4],
+          }));
+  
+          // Update the rows state by merging the existing rows with the new rows
+          setData((prevData) => [...prevData, ...newData]);
+          toast.success('Tải thông tin thành công');
+        }
+      });
+    };
+    
+
+    
 
    const columns = [
     { field: "id", 
@@ -35,6 +67,10 @@ const RegistryManagement = () => {
     {
       field: "car_id",
       headerName: "Biển số xe",
+      renderCell: ({row : {car_id, id}}) => (
+      <Link style={{ textDecoration: 'none', color: colors.greenAccent[400] }} 
+        to={`/registryManagement/${id}`}>{car_id}</Link>
+      ),
       flex: 1,
       cellClassName: "name-column--cell",
     },
@@ -61,7 +97,6 @@ const RegistryManagement = () => {
       flex: 1,
       renderCell: ({ row: { status } }) => {
         return (
-          
           <Typography color={status === "normal" ? colors.greenAccent[400]: '#fff207'}>{status}</Typography>
         );
       },
@@ -70,8 +105,28 @@ const RegistryManagement = () => {
   
    return (
     <Box m="20px">
-        <Header title="Quản lý đăng kiểm" subtitle="Quản lý danh sách xe đã đăng kiểm trên toàn quốc" />
-
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Header title="Quản lý đăng kiểm" subtitle="Quản lý danh sách xe đã đăng kiểm trên toàn quốc" />
+          <Box sx={{display:"inline-flex"}} >    
+          <input type="file" 
+          multiple={false} ref={fileInputRef} hidden
+          onChange={handleFileUpload} />
+          <Button
+              onClick={()=>fileInputRef.current.click()}
+              sx={{
+              backgroundColor: colors.blueAccent[700],
+              color: colors.grey[100],
+              fontSize: "14px",
+              fontWeight: "800",
+              padding: "10px 20px"
+              }}
+              >
+                  Tải lên thông tin
+          </Button>
+         
+          </Box>
+        </Box>
+        <ToastContainer theme='colored' position='top-center'></ToastContainer>      
         {/* Static */}
         <Grid container spacing={2} >
             <Grid xs={6} md={3}>
@@ -145,7 +200,7 @@ const RegistryManagement = () => {
                 </Box>
             </Grid>  
         </Grid>
-
+       
         {/* Table List */}
 
         <Box
